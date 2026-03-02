@@ -6,27 +6,28 @@ public class MachineProblem1_GUINTO {
     // ─── File Validation ────────────────────────────────────────────────────────
 
     public static File promptForValidFile() {
-        Scanner input = new Scanner(System.in);
-        File file;
+        try (Scanner input = new Scanner(System.in)) {
+            File file;
 
-        while (true) {
-            System.out.print("\nEnter dataset file path: ");
-            String path = input.nextLine().trim();
-            file = new File(path);
+            while (true) {
+                System.out.print("\nEnter dataset file path: ");
+                String path = input.nextLine().trim();
+                file = new File(path);
 
-            if (!file.exists() || !file.isFile()) {
-                System.out.println("[ERROR] File not found or path is not a file. Please try again.");
-            } else if (!file.canRead()) {
-                System.out.println("[ERROR] File is not readable. Check permissions and try again.");
-            } else if (!path.toLowerCase().endsWith(".csv")) {
-                System.out.println("[ERROR] File does not appear to be a CSV file (.csv extension required).");
-            } else {
-                System.out.println("[OK] File found and validated.");
-                break;
+                if (!file.exists() || !file.isFile()) {
+                    System.out.println("[ERROR] File not found or path is not a file. Please try again.");
+                } else if (!file.canRead()) {
+                    System.out.println("[ERROR] File is not readable. Check permissions and try again.");
+                } else if (!path.toLowerCase().endsWith(".csv")) {
+                    System.out.println("[ERROR] File does not appear to be a CSV file (.csv extension required).");
+                } else {
+                    System.out.println("[OK] File found and validated.");
+                    break;
+                }
             }
-        }
 
-        return file;
+            return file;
+        }
     }
 
     // ─── CSV Loading ─────────────────────────────────────────────────────────────
