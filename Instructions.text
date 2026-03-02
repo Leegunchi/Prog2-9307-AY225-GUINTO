@@ -1,0 +1,55 @@
+Sales Trend Moving Average
+
+Scenario:
+Apply simple analytics smoothing technique.
+
+Requirements:
+Sort dataset by date
+Compute 3-day moving average (or 3-record moving average)
+Display original sale + moving average
+
+1. When the program starts, it MUST first ask the user to input the FULL FILE PATH
+   of the CSV dataset before performing any processing.
+
+   Example:
+   Enter dataset file path: C:\Users\Student\Downloads\sales_data.csv
+
+2. The program must validate:
+   - If file exists
+   - If file is readable
+   - If file is in correct CSV format
+
+3. If invalid:
+   - Display appropriate error message
+   - Ask again for file path (loop until valid)
+
+4. DO NOT hardcode dataset path.
+5. DO NOT hardcode dataset values.
+6. Use proper file handling:
+   - Java: BufferedReader or Scanner
+7. Apply proper modular design:
+   - Java: At least one separate class (e.g., DataRecord)
+8. Implement error handling using try-catch.
+9. Output must be formatted and readable.
+
+program must:
+Use Scanner for file path input
+Use File class for validation
+Loop until valid path
+
+Example structure (simplified):
+
+Scanner input = new Scanner(System.in);
+File file;
+
+while (true) {
+    System.out.print("Enter dataset file path: ");
+    String path = input.nextLine();
+    file = new File(path);
+
+    if (file.exists() && file.isFile()) {
+        break;
+    } else {
+        System.out.println("Invalid file path. Please try again.");
+    }
+}
