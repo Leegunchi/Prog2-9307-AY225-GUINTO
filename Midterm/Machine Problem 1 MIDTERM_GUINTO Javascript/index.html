@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sales Trend Moving Average Analyzer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <p class="label">Programming 2 / Machine Problem</p>
+    <h1>Sales Trend Moving Average Analyzer</h1>
+  </header>
+
+  <div id="upload-zone">
+    <input type="file" id="file-input" accept=".csv" />
+    <p class="upload-title">Drop your CSV file here, or click to browse</p>
+    <p class="upload-hint">Required columns: title / release_date / total_sales</p>
+  </div>
+
+  <div id="status"></div>
+
+  <div id="stats-bar">
+    <div class="stat-card">
+      <div class="stat-label">Total Records</div>
+      <div class="stat-value accent" id="stat-records">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Date Range</div>
+      <div class="stat-value date-range" id="stat-dates">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg Sales (M)</div>
+      <div class="stat-value accent2" id="stat-avg">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Top Sales (M)</div>
+      <div class="stat-value" id="stat-top">—</div>
+    </div>
+  </div>
+
+  <div id="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Release Date</th>
+          <th>Sales (M)</th>
+          <th>3-Record Moving Avg</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+
+  <footer>UPHSD / BS Computer Science Data Science / Moving Average Analyzer</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

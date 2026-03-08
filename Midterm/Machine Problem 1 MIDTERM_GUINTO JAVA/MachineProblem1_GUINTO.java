@@ -27,7 +27,7 @@ public class MachineProblem1_GUINTO extends JFrame {
         File validFile = promptForValidFile();
 
         try {
-            List<DataRecord> records = loadCSV(validFile);
+            List<DataRecords> records = loadCSV(validFile);
 
             if (records.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
@@ -96,11 +96,11 @@ public class MachineProblem1_GUINTO extends JFrame {
         }
     }
 
-    // CSV LOADING (BufferedReader Required)
+    // csv loading with error handling
 
-    private List<DataRecord> loadCSV(File file) throws IOException {
+    private List<DataRecords> loadCSV(File file) throws IOException {
 
-        List<DataRecord> records = new ArrayList<>();
+        List<DataRecords> records = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
@@ -134,7 +134,7 @@ public class MachineProblem1_GUINTO extends JFrame {
                     String date = cols[dateIdx].trim();
                     double sales = Double.parseDouble(cols[salesIdx].trim());
 
-                    records.add(new DataRecord(title, date, sales));
+                    records.add(new DataRecords(title, date, sales));
 
                 } catch (Exception e) {
                 }
@@ -145,11 +145,11 @@ public class MachineProblem1_GUINTO extends JFrame {
     }
 
     // SORT BY DATE
-    private void sortByDate(List<DataRecord> records) {
-        records.sort(Comparator.comparing(DataRecord::getReleaseDate));
+    private void sortByDate(List<DataRecords> records) {
+        records.sort(Comparator.comparing(DataRecords::getReleaseDate));
     }
 
-    private void applyMovingAverage(List<DataRecord> records, int window) {
+    private void applyMovingAverage(List<DataRecords> records, int window) {
 
         for (int i = 0; i < records.size(); i++) {
             if (i >= window - 1) {
@@ -165,11 +165,11 @@ public class MachineProblem1_GUINTO extends JFrame {
         }
     }
 
-    private void displayResults(List<DataRecord> records) {
+    private void displayResults(List<DataRecords> records) {
 
         tableModel.setRowCount(0);
 
-        for (DataRecord r : records) {
+        for (DataRecords r : records) {
 
             String movingAvg = (r.getMovingAverage() > 0)
                     ? String.format("%.2f", r.getMovingAverage())
