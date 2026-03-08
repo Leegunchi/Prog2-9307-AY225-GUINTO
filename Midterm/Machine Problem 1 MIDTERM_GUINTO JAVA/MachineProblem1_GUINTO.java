@@ -23,7 +23,7 @@ public class MachineProblem1_GUINTO extends JFrame {
 
         add(new JScrollPane(table), BorderLayout.CENTER);
 
-        // REQUIREMENT #1 → Ask full file path at start
+        // full file path at startup
         File validFile = promptForValidFile();
 
         try {
@@ -49,9 +49,7 @@ public class MachineProblem1_GUINTO extends JFrame {
         }
     }
 
-    // ─────────────────────────────────────────────
     // 1–3 FILE VALIDATION (LOOP UNTIL VALID)
-    // ─────────────────────────────────────────────
     private File promptForValidFile() {
         while (true) {
 
@@ -93,14 +91,13 @@ public class MachineProblem1_GUINTO extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
             else {
-                return file; // VALID
+                return file; // when file is valid, return it and exit loop
             }
         }
     }
 
-    // ─────────────────────────────────────────────
     // CSV LOADING (BufferedReader Required)
-    // ─────────────────────────────────────────────
+
     private List<DataRecord> loadCSV(File file) throws IOException {
 
         List<DataRecord> records = new ArrayList<>();
@@ -140,7 +137,6 @@ public class MachineProblem1_GUINTO extends JFrame {
                     records.add(new DataRecord(title, date, sales));
 
                 } catch (Exception e) {
-                    // Skip invalid rows
                 }
             }
         }
@@ -148,16 +144,11 @@ public class MachineProblem1_GUINTO extends JFrame {
         return records;
     }
 
-    // ─────────────────────────────────────────────
     // SORT BY DATE
-    // ─────────────────────────────────────────────
     private void sortByDate(List<DataRecord> records) {
         records.sort(Comparator.comparing(DataRecord::getReleaseDate));
     }
 
-    // ─────────────────────────────────────────────
-    // 3-RECORD MOVING AVERAGE
-    // ─────────────────────────────────────────────
     private void applyMovingAverage(List<DataRecord> records, int window) {
 
         for (int i = 0; i < records.size(); i++) {
@@ -174,9 +165,6 @@ public class MachineProblem1_GUINTO extends JFrame {
         }
     }
 
-    // ─────────────────────────────────────────────
-    // DISPLAY RESULTS (Formatted JTable)
-    // ─────────────────────────────────────────────
     private void displayResults(List<DataRecord> records) {
 
         tableModel.setRowCount(0);
@@ -195,10 +183,6 @@ public class MachineProblem1_GUINTO extends JFrame {
             });
         }
     }
-
-    // ─────────────────────────────────────────────
-    // MAIN METHOD
-    // ─────────────────────────────────────────────
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new MachineProblem1_GUINTO().setVisible(true);
