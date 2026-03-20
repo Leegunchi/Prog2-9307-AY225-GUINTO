@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Problem 3 — Dataset Processing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="container">
+
+  <header>
+    <div class="tag"><span class="tag-dot"></span>Machine Problem 3</div>
+    <h1>Dataset <span>Analyzer</span></h1>
+    <p class="subtitle">
+      <span class="mp-badge">MP9</span>
+      <span class="sep">·</span>
+      <span class="mp-badge">MP10</span>
+      <span class="sep">·</span>
+      <span class="mp-badge">MP11</span>
+    </p>
+    <p class="course-tag">Prog2-9307-AY225-GUINTO</p>
+  </header>
+
+  <div class="file-prompt" id="file-prompt">
+    <div class="prompt-label">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Load your dataset to begin
+    </div>
+    <div class="file-input-row">
+      <div class="file-display-wrap">
+        <svg class="file-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 2.5A1.5 1.5 0 013.5 1h4.086a1.5 1.5 0 011.06.44l2.915 2.914A1.5 1.5 0 0112 5.414V11.5A1.5 1.5 0 0110.5 13h-7A1.5 1.5 0 012 11.5v-9z" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M7.5 1.5V4.5a1 1 0 001 1H11.5" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <input type="text" id="file-path-display" placeholder="No file selected..." readonly>
+      </div>
+      <label class="browse-btn" for="csv-input">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 2v8M3.5 6.5L7 10l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M1 11.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Browse
+      </label>
+      <input type="file" id="csv-input" accept=".csv" style="display:none">
+    </div>
+    <button id="load-btn" disabled>
+      <span class="btn-text">Load Dataset</span>
+      <span class="btn-arrow">→</span>
+    </button>
+    <div id="load-error" class="load-error" style="display:none"></div>
+  </div>
+
+  <div class="loaded-banner" id="loaded-banner" style="display:none">
+    <div class="banner-left">
+      <div class="status-dot"></div>
+      <div>
+        <div class="banner-title" id="banner-filename"></div>
+        <div class="banner-meta" id="banner-meta"></div>
+      </div>
+    </div>
+    <button class="reload-btn" id="reload-btn">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <path d="M1.5 6.5a5 5 0 109.8-1.4M11.5 2v3h-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Change file
+    </button>
+  </div>
+
+  <div id="main-content" style="display:none">
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" onclick="switchTab('mp9')" id="tab-mp9">
+        <span class="tab-num">09</span>
+        <span class="tab-label">Statistics</span>
+      </button>
+      <button class="tab" role="tab" onclick="switchTab('mp10')" id="tab-mp10">
+        <span class="tab-num">10</span>
+        <span class="tab-label">Duplicates</span>
+      </button>
+      <button class="tab" role="tab" onclick="switchTab('mp11')" id="tab-mp11">
+        <span class="tab-num">11</span>
+        <span class="tab-label">Frequency</span>
+      </button>
+    </div>
+
+    <div class="panel active" id="panel-mp9"  role="tabpanel"><div id="mp9-results"></div></div>
+    <div class="panel"        id="panel-mp10" role="tabpanel"><div id="mp10-results"></div></div>
+    <div class="panel"        id="panel-mp11" role="tabpanel"><div id="mp11-results"></div></div>
+  </div>
+
+</div>
+
+<script src="main.js"></script>
+<script src="mp9.js"></script>
+<script src="mp10.js"></script>
+<script src="mp11.js"></script>
+</body>
+</html>
